@@ -10,22 +10,31 @@ public class Roll
     char repeat;
 
     do {
-    System.out.print("\nWhat die do you need to roll? ");
+    System.out.print("\nWhat number die do you need to roll? ");
     
    
     Scanner in = new Scanner(System.in);
+    
     while (!in.hasNextInt())
     {
       System.out.print("Invalid number. What do you need to roll?  ");
         in.next();    
     }
 
-    
     int num = in.nextInt();
     int roll = num;
 
+    while (roll <= 0)
+    {
+      System.out.print("Invalid number. What number die do you need to roll?  ");
+      num = in.nextInt(); 
+      roll = num;
+    }
+
     Random rand = new Random();
-    int result = rand.nextInt(roll) + 1; 
+    int result = 0;
+    result = rand.nextInt(roll) + 1;
+    
 
     System.out.print("Enter your modifiers: ");
     in = new Scanner(System.in);
@@ -49,8 +58,6 @@ public class Roll
     repeat = in.next(".").charAt(0);
 
   
-    if (repeat != 'Y' || repeat != 'y' )
-        System.exit(0);
 
     }while(repeat == 'Y' || repeat == 'y');
 
